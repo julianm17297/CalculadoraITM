@@ -18,9 +18,22 @@ namespace TareaCalculadora
             // 2. ENTRADA USANDO EL METODO DEL FINAL Y LLAMANDO LAS VARIABLES PARA ASIGNAR LOS VALORES
             numeroUno = LeerNumero("Ingresa el primer número: ");
 
-            Console.Write("Elige la operación (suma +, resta -, multiplicacion *, division /): ");
-            operacion = Console.ReadLine();
+            bool simboloValido = false;
+            while (!simboloValido)
+            {
+                Console.Write("Elige la operación (+, -, *, /): ");
+                operacion = Console.ReadLine();
 
+                // Validamos si lo que escribió es uno de los 4 permitidos
+                if (operacion == "+" || operacion == "-" || operacion == "*" || operacion == "/")
+                {
+                    simboloValido = true;
+                }
+                else
+                {
+                    MostrarError("Error: Símbolo no reconocido. Intenta de nuevo.");
+                }
+            }
             numeroDos = LeerNumero("Ingresa el segundo número: ");
 
             // 3. LÓGICA DE OPERACIÓN
@@ -34,6 +47,7 @@ namespace TareaCalculadora
                     {
                         MostrarError("Error: No se puede dividir entre cero.");
                         operacionValida = false;
+                        
                     }
                     else { resultado = numeroUno / numeroDos; }
                     break;
